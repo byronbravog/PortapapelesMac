@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "swift",
+            "args": ["build", "--build-path", ".build"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$swiftc"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "build-release",
+            "type": "shell",
+            "command": "swift",
+            "args": ["build", "-c", "release", "--build-path", ".build"],
+            "group": "build",
+            "problemMatcher": ["$swiftc"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "swift",
+            "args": ["run", "--build-path", ".build"],
+            "dependsOn": ["build"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": ["$swiftc"]
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "rm",
+            "args": ["-rf", ".build"],
+            "group": "build"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+.build/
+Portapapeles.app/
+.DS_Store
+
+# User-specific editor files
+.vscode/*.log

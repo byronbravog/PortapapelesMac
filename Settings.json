@@ -1,0 +1,11 @@
+{
+    "swift.path": "/usr/bin/swift",
+    "swift.buildArguments": [],
+    "swift.useLegacyBuild": false,
+    "editor.formatOnSave": true,
+    "[swift]": {
+        "editor.defaultFormatter": "sswg.swift-lang"
+    },
+    "lldb.adapterType": "bundled",
+    "lldb.launchExpressions": "native"
+}
