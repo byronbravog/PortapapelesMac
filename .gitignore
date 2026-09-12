@@ -1,5 +1,6 @@
 .build/
 Portapapeles.app/
+Resources/AppIcon.iconset/
 .DS_Store
 
 # User-specific editor files

@@ -6,6 +6,8 @@
     <string>Portapapeles</string>
     <key>CFBundleExecutable</key>
     <string>Portapapeles</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>com.byronbravog.Portapapeles</string>
     <key>CFBundleInfoDictionaryVersion</key>
