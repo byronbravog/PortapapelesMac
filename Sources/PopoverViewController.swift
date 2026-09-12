@@ -95,6 +95,7 @@ class PopoverViewController: NSViewController {
         tableView.delegate = self
         tableView.rowHeight = 28
         tableView.target = self
+        tableView.action = #selector(rowSelected)
         tableView.doubleAction = #selector(doubleClickRow)
         
         // Teclas de navegación
@@ -135,6 +136,10 @@ class PopoverViewController: NSViewController {
     }
     
     @objc func doubleClickRow() {
+        pasteSelectedItem()
+    }
+
+    @objc func rowSelected() {
         pasteSelectedItem()
     }
     
