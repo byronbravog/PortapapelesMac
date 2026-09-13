@@ -1,5 +1,14 @@
 import Cocoa
 
+private final class AppearanceAwareView: NSView {
+    var onAppearanceChange: (() -> Void)?
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        onAppearanceChange?()
+    }
+}
+
 class PopoverViewController: NSViewController {
     private let historyManager: HistoryManager
     private var filteredItems: [ClipboardItem] = []
@@ -47,10 +56,18 @@ class PopoverViewController: NSViewController {
     }
     
     override func loadView() {
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 420, height: 300))
+        let contentView = AppearanceAwareView(frame: NSRect(x: 0, y: 0, width: 420, height: 300))
+        contentView.onAppearanceChange = { [weak self] in
+            self?.updateAppearance()
+        }
+        view = contentView
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
         view.layer?.cornerRadius = 12
+        updateAppearance()
+    }
+
+    private func updateAppearance() {
+        view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
     }
     
     override func viewDidLoad() {
@@ -124,7 +141,7 @@ class PopoverViewController: NSViewController {
     @objc func historyDidChange() {
         loadHistory()
     }
-    
+
     @objc func searchFieldChanged() {
         let filter = searchField.stringValue
         if filter.isEmpty {
@@ -151,7 +168,7 @@ class PopoverViewController: NSViewController {
         
         NSPasteboard.general.clearContents()
         if let imageData = selected.imageData {
-            NSPasteboard.general.setData(imageData, forType: .tiff)
+            NSPasteboard.general.setData(imageData, forType: .png)
         } else {
             NSPasteboard.general.setString(selected.value, forType: .string)
         }
